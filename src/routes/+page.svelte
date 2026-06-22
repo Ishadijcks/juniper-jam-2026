@@ -1,6 +1,5 @@
 <script lang="ts">
   import { engine, game } from '$lib/game/game.svelte';
-  import Panel from '$lib/components/panel/Panel.svelte';
   import GearOverview from '$lib/components/GearOverview.svelte';
   import GearGrid from '$lib/components/GearGrid.svelte';
   import { DragDropProvider } from '@dnd-kit/svelte';
@@ -16,11 +15,8 @@
     game.start();
   });
 
-  const scan = () => {
-    engine.features.gameManager.scanForCompletions();
-  };
-
-  function onDragEnd(event) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function onDragEnd(event: any) {
     if (event.canceled) return;
 
     const source = event.operation.source;
@@ -54,13 +50,7 @@
     <div class="flex-1 min-w-0 min-h-0">
       <GearGrid />
     </div>
-    <div class="flex flex-col space-y-8 min-w-96">
-      <Panel>
-        <Panel --pixel-upscale={2} snug>
-          <button class="" onclick={() => scan()}>Scan</button>
-        </Panel>
-      </Panel>
-
+    <div class="flex flex-col space-y-8 min-w-96 h-full">
       <GearOverview />
     </div>
   </DragDropProvider>

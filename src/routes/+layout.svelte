@@ -5,10 +5,18 @@
   import { engine } from '$lib/game/game.svelte';
 
   import background from '$lib/assets/background.png';
+  import ResetSaveToolbarEntry from '$lib/debug/ResetSaveToolbarEntry.svelte';
+  import ManualScanToolbarEntry from '$lib/debug/ManualScanToolbarEntry.svelte';
+  import ResetGamesToolbarEntry from '$lib/debug/ResetGamesToolbarEntry.svelte';
 
   let { children } = $props();
 
-  const config = new LuiConfigBuilder().build();
+  const config = new LuiConfigBuilder()
+    .addToolbarItem('meta/reset-save', ResetSaveToolbarEntry)
+    .addToolbarItem('meta/manual-scan', ManualScanToolbarEntry)
+    .addToolbarItem('meta/reset-game-progress', ResetGamesToolbarEntry)
+
+    .build();
 </script>
 
 <svelte:head>

@@ -13,11 +13,13 @@
   let totalGames = $derived(gameManager.gameCount);
 </script>
 
-<Panel>
-  <div class="flex flex-col space-y-2">
-    <p>Games completed: {gamesCompleted}/{totalGames}</p>
-    {#each gears as gear (gear.id)}
-      <GearGameDisplay {gear} />
-    {/each}
-  </div>
-</Panel>
+<div class="flex h-full">
+  <Panel>
+    <div class="flex flex-col space-y-2">
+      <p>Games completed: {gamesCompleted}/{totalGames}</p>
+      {#each gears as gear (gear.id)}
+        <GearGameDisplay {gear} />
+      {/each}
+    </div>
+  </Panel>
+</div>

@@ -55,6 +55,15 @@ export class GameManager extends LudiekFeature<Dependencies> {
     this.completeGames(game.id, date);
   }
 
+  /**
+   * Reset the progress flag from all other games
+   */
+  public resetGames(): void {
+    this.games.forEach((game) => {
+      localStorage.removeItem(game.saveKey);
+    });
+  }
+
   public isCompleted(gameId: GameId): boolean {
     return this._state.completions[gameId] != null;
   }
