@@ -15,16 +15,18 @@
 
   let image = $derived(asset('/assets/gear/' + src));
 
+  const intervalDuration = 20;
+
   let rotation = new Tween(0, {
-    duration: 1000,
+    duration: intervalDuration,
   });
 
   let delta = $derived(isReversed ? -speed : speed);
 
   onMount(() => {
     const interval = setInterval(() => {
-      rotation.target += delta;
-    }, 1000);
+      rotation.target += delta * (intervalDuration / 1000);
+    }, intervalDuration);
 
     return () => {
       clearInterval(interval);
