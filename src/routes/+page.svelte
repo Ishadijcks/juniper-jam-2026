@@ -47,12 +47,12 @@
 </script>
 
 <DragDropProvider {onDragEnd}>
-  <div class="flex flex-row h-full space-x-8 pl-8">
+  <div class="flex flex-col lg:flex-row h-full space-y-2 lg:space-y-0 lg:space-x-8 lg:pl-8">
     <Panel className="grow">
       <GearGrid />
     </Panel>
 
-    <Panel>
+    <Panel className="max-h-96 lg:max-h-full">
       <GearOverview />
     </Panel>
   </div>

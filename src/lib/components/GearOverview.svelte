@@ -2,10 +2,6 @@
   import { engine } from '$lib/game/game.svelte';
   import GearGameDisplay from '$lib/components/GearGameDisplay.svelte';
   import ProgressBar from '$lib/components/progress-bar/ProgressBar.svelte';
-  import ResetSaveToolbarEntry from '$lib/debug/ResetSaveToolbarEntry.svelte';
-  import ResetGamesToolbarEntry from '$lib/debug/ResetGamesToolbarEntry.svelte';
-  import ManualScanToolbarEntry from '$lib/debug/ManualScanToolbarEntry.svelte';
-
   let gameManager = $derived(engine.features.gameManager);
   let gearGrid = $derived(engine.features.gearGrid);
 
@@ -20,7 +16,7 @@
 <div class="flex flex-col h-full lg:w-min-[128]">
   <div class="flex flex-row w-full mb-8">
     <ProgressBar {progress}>
-      <span class="font-primary">{gamesCompleted}/{totalGames} Games completed</span>
+      <span class="font-primary text-xs lg:text-md">{gamesCompleted}/{totalGames} Games completed</span>
     </ProgressBar>
   </div>
 
@@ -30,12 +26,5 @@
         <GearGameDisplay {gear} />
       {/if}
     {/each}
-  </div>
-
-  <div class="grow"></div>
-  <div class="flex flex-row space-x-2">
-    <ResetSaveToolbarEntry />
-    <ResetGamesToolbarEntry />
-    <ManualScanToolbarEntry />
   </div>
 </div>

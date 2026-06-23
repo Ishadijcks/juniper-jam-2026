@@ -42,8 +42,8 @@
       <a href={game.url} target="_blank" class="w-full">
         <div class="font-primary text-xl">
           <div class="flex flex-col">
-            <h2 class="text-xl font-primary">{game.title}</h2>
-            <h2 class="text-sm font-primary">{game.description}</h2>
+            <h2 class="text-md lg:text-xl font-primary">{game.title}</h2>
+            <h2 class="text-xs lg:text-sm font-primary">{game.description}</h2>
           </div>
         </div>
       </a>

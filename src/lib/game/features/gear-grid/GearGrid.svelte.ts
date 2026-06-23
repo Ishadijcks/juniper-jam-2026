@@ -64,8 +64,16 @@ export class GearGrid extends LudiekFeature<Dependencies> {
       speed: 100,
       isReversed: false,
     };
-    this.grid[middleY][this.WIDTH - 1].isVisible = true;
     this.grid[0][middleX].isVisible = true;
+    this.grid[middleY][this.WIDTH - 1] = {
+      x: this.WIDTH - 1,
+      y: middleY,
+      gear: '/gear/hat',
+      isVisible: true,
+      isFixed: true,
+      speed: 0,
+      isReversed: false,
+    };
     this.grid[this.HEIGHT - 1][middleX].isVisible = true;
   }
 

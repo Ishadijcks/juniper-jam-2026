@@ -25,7 +25,7 @@
 
 <LuiContext {config} {engine}>
   <div
-    class="p-4 h-screen w-full overflow-hidden select-none bg-blend-hard-light"
+    class="p-2 lg:p-4 h-screen w-full overflow-hidden select-none bg-blend-hard-light"
     style="background-image: url({background})"
   >
     {@render children()}
