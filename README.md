@@ -1,6 +1,8 @@
-# sv
+# Juniper Jam Metagame
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+![](./images/juniper-jam-logo.png)
+
+Complete this game by completing other games!
 
 ## Creating a project
 
