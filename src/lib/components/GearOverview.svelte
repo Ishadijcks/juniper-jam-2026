@@ -13,7 +13,7 @@
   let progress = $derived(gamesCompleted / totalGames);
 </script>
 
-<div class="flex flex-col h-full lg:w-min-[128]">
+<div class="flex flex-col h-full lg:min-w-[128]">
   <div class="flex flex-row w-full mb-8">
     <ProgressBar {progress}>
       <span class="font-primary text-xs lg:text-md">{gamesCompleted}/{totalGames} Games completed</span>

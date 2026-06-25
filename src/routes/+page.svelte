@@ -48,7 +48,7 @@
       <GearGrid />
     </Panel>
 
-    <Panel className="max-h-96 lg:max-h-full">
+    <Panel className="max-h-96 lg:max-h-full lg:max-w-1/2">
       <GearOverview />
     </Panel>
   </div>
