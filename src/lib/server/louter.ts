@@ -5,7 +5,7 @@ import { engine } from '$lib/game/game.svelte';
 export const parseContent = async () => {
   const louter = new Louter([
     // Loads all files in the specified folder
-    new LouterFileLoader('content'),
+    new LouterFileLoader('static/games'),
 
     // Parses the YAML that was found
     new LouterYamlParser(),

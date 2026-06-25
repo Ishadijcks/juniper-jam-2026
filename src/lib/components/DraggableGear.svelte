@@ -17,8 +17,9 @@
   const draggable = $derived(createDraggable({ id: gear.id }));
 
   let size = $derived(cellSize * gear.size);
+  let image = $derived(gear.image);
 </script>
 
 <div class="cursor-grab" {@attach isDraggable && draggable.attach}>
-  <AnimatedGear speed={speed / gear.size} src={gear.image} {size} {isReversed} />
+  <AnimatedGear speed={speed / gear.size} {image} {size} {isReversed} />
 </div>

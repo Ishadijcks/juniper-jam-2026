@@ -31,7 +31,7 @@
           <DraggableGear speed={0} gearId={gear.id} cellSize={defaultSize / gear.size} />
         {:else}
           <div class="disabled grayscale-100 opacity-25" {@attach createDroppable({ id: `cancel${gear.id}` }).attach}>
-            <AnimatedGear speed={0} src={gear.image} size={defaultSize} />
+            <AnimatedGear speed={0} image={gear.image} size={defaultSize} />
           </div>
         {/if}
       {/if}

@@ -1,19 +1,19 @@
 <script lang="ts">
+  import { asset } from '$app/paths';
   import { type Asset } from '$app/types';
   import { onMount } from 'svelte';
-  import { asset } from '$app/paths';
   import { Tween } from 'svelte/motion';
 
   interface Props {
     size: number;
-    src: Asset;
+    image: Asset;
     speed: number;
     isReversed?: boolean;
   }
 
-  let { size, src, speed, isReversed = false }: Props = $props();
+  let { size, image, speed, isReversed = false }: Props = $props();
 
-  let image = $derived(asset('/assets/gear/' + src));
+  let src = $derived(asset(`/games/${image}`));
 
   const intervalDuration = 20;
 
@@ -37,7 +37,7 @@
 <img
   class="pixelated"
   draggable="false"
-  src={image}
+  {src}
   alt="Gear"
   style="width: {size}px; height: {size}px; transform:rotate({rotation.current}deg);"
 />
