@@ -15,6 +15,7 @@ export interface GearState {
 export interface GearGridState {
   grid: GearState[][];
   connections: { from: GearState; to: GearState }[];
+  allGoalsSpinning: boolean;
 }
 
 type Dependencies = {
@@ -30,6 +31,7 @@ export class GearGrid extends LudiekFeature<Dependencies> {
   protected _state: GearGridState = $state({
     grid: [],
     connections: [],
+    allGoalsSpinning: false,
   });
 
   initialize() {
@@ -64,26 +66,48 @@ export class GearGrid extends LudiekFeature<Dependencies> {
       speed: 100,
       isReversed: false,
     };
-    this.grid[0][middleX].isVisible = true;
-    this.grid[middleY][this.WIDTH - 1] = {
-      x: this.WIDTH - 1,
-      y: middleY,
-      gear: '/gear/hat',
+    this.grid[0][middleX] = {
+      x: middleX,
+      y: 0,
+      gear: '/gear/hat-top',
       isVisible: true,
       isFixed: true,
       speed: 0,
       isReversed: false,
     };
-    this.grid[this.HEIGHT - 1][middleX].isVisible = true;
-  }
-
-  public update(): void {
-    this.onGearMoved();
+    this.grid[middleY][this.WIDTH - 1] = {
+      x: this.WIDTH - 1,
+      y: middleY,
+      gear: '/gear/hat-right',
+      isVisible: true,
+      isFixed: true,
+      speed: 0,
+      isReversed: false,
+    };
+    this.grid[this.HEIGHT - 1][middleX] = {
+      x: middleX,
+      y: this.HEIGHT - 1,
+      gear: '/gear/hat-bottom',
+      isVisible: true,
+      isFixed: true,
+      speed: 0,
+      isReversed: false,
+    };
   }
 
   public onGearMoved(): void {
     this.calculateTree();
     this.setSpeeds();
+
+    const goals: GearId[] = ['/gear/hat-top', '/gear/hat-right', '/gear/hat-bottom'];
+    this._state.allGoalsSpinning = goals.every((goal) => {
+      return this._state.connections.some((connection) => connection.to.gear === goal);
+    });
+
+    if (this._state.allGoalsSpinning) {
+      // eslint-disable-next-line svelte/prefer-svelte-reactivity
+      localStorage.setItem('123ishatest/metagame', new Date().toJSON());
+    }
   }
 
   public setSpeeds(): void {
@@ -100,6 +124,7 @@ export class GearGrid extends LudiekFeature<Dependencies> {
 
   public placeGear(x: number, y: number, gearId: GearId): void {
     this._state.grid[y][x].gear = gearId;
+    this.onGearMoved();
   }
 
   public get source(): GearState {
@@ -157,22 +182,7 @@ export class GearGrid extends LudiekFeature<Dependencies> {
 
   public removeGear(x: number, y: number): void {
     this._state.grid[y][x].gear = null;
-  }
-
-  public moveGear(fromX: number, fromY: number, toX: number, toY: number) {
-    const fromGear = this.getGear(fromX, fromY);
-    if (!fromGear) {
-      console.warn(`Cannot move gear as there was no gear at (${fromX}, ${fromY})`);
-      return;
-    }
-    const toGear = this.getGear(toX, toY);
-    if (toGear) {
-      this.swapGears(fromX, fromY, toX, toY);
-      return;
-    }
-
-    this.removeGear(fromX, fromY);
-    this.placeGear(toX, toY, fromGear);
+    this.onGearMoved();
   }
 
   public swapGears(fromX: number, fromY: number, toX: number, toY: number) {
