@@ -18,7 +18,7 @@ export class Statistics extends LudiekFeature<Dependencies> {
     this.engine.features.gameManager.onGameCompleted.subscribe(async () => {
       await this.publishGames();
     });
-    signInAnonymously(firebaseAuth);
+    signInAnonymously(firebaseAuth).then(() => this.publishGames());
   }
 
   public async publishGames(): Promise<void> {
