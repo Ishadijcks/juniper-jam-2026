@@ -27,8 +27,8 @@ type Dependencies = {
 export class GearGrid extends LudiekFeature<Dependencies> {
   public readonly type = 'gearGrid';
 
-  public readonly HEIGHT = 11;
-  public readonly WIDTH = 11;
+  public readonly HEIGHT = 13;
+  public readonly WIDTH = 13;
 
   protected _state: GearGridState = $state({
     grid: [],
