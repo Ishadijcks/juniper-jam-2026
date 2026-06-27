@@ -7,27 +7,29 @@
   let showModal = $state(false);
 
   onMount(() => {
-    return engine.features.gearGrid.onMetaGameCompleted.subscribe(() => {
-      showModal = true;
-      gameCompletedSound.play();
+    return engine.features.gameManager.onGameCompleted.subscribe(() => {
+      if (engine.features.gameManager.allGamesCompleted) {
+        showModal = true;
+        gameCompletedSound.play();
+      }
     });
   });
 </script>
 
 <Modal bind:showModal>
   <div class="flex flex-col items-center space-y-4">
-    <h2 class="font-primary text-xl">You have completed the Metagame</h2>
-    <p class="font-primary text-md">Thank you for playing, I hope you enjoyed it!</p>
-    <p class="font-primary text-md">Massive thanks to all the devs who allowed me to showcase their game</p>
-    <br />
-    <p class="font-primary text-md">- Isha</p>
-    <br />
+    <h2 class="font-primary text-xl">Incredible!</h2>
+    <h2 class="font-primary text-lg">You have completed all the games!</h2>
     <p class="font-primary text-sm">
-      PS. Don't forget to
+      Luckily there are
       <a href="https://itch.io/jam/theveryseriousjuniperdevgamejam/submissions" target="_blank" class="underline"
-        >play other games too</a
+        >way more games to play!</a
       >
     </p>
+    <br />
+    <h2 class="font-primary text-lg">Thank you for playing!</h2>
+    <p class="font-primary text-md">- Isha</p>
+    <br />
 
     <br />
   </div>

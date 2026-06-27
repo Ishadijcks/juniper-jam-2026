@@ -7,6 +7,7 @@
   import GearOverview from '$lib/components/GearOverview.svelte';
   import GameCompletionModal from '$lib/components/GameCompletionModal.svelte';
   import { gameUnlockSound, pickupSound, shufflePickupSound } from '$lib/audio';
+  import Game100PercentModal from '$lib/components/Game100PercentModal.svelte';
 
   let { data } = $props();
 
@@ -70,3 +71,4 @@
 </DragDropProvider>
 
 <GameCompletionModal />
+<Game100PercentModal />

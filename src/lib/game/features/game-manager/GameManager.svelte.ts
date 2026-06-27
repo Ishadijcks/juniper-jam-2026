@@ -93,6 +93,10 @@ export class GameManager extends LudiekFeature<Dependencies> {
     return this.games.filter((game) => this.isCompleted(game.id));
   }
 
+  public get allGamesCompleted(): boolean {
+    return this.games.every((game) => this.isCompleted(game.id));
+  }
+
   // Events
   protected _onGameCompleted = new SimpleEventDispatcher<GameCompletedEvent>();
 
